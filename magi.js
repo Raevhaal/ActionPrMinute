@@ -42,6 +42,7 @@ function process() {
     currentAPM = actions.length;
     if (currentAPM > highestApm[0]) {
         highestApm = [currentAPM, currentTime];
+        document.getElementById("HighestAPMParagraph").innerText = highestApm[0];
     }
     //console.log(currentAPM)
 
@@ -106,7 +107,9 @@ prevLabelValue = 0;
 let config = {
     type: "line",
     data: data,
-    plugins: [ChartDataLabels],
+    plugins: [
+        ChartDataLabels
+    ],
     options: {
         scales: {
             x: {
@@ -135,7 +138,7 @@ let config = {
                 backgroundColor: (context) => context.dataset.borderColor,
                 padding: 4,
                 borderRadius: 4,
-                clip: false, // true is recommended to keep labels running off the chart area
+                clip: true, // true is recommended to keep labels running off the chart area
                 color: "white",
                 font: {
                     weight: "bold",
@@ -152,7 +155,7 @@ let config = {
                             return null;
                         }
                         prevValue = value.y;
-                        
+
                         return value.y;
                     } else {
                         return null;

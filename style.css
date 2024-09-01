@@ -3,24 +3,10 @@
     color-scheme: dark;
 }
 
-/* Hides text */
-.superHidden{
-    font-size: 0px;
-    display: inline; 
-    position: absolute;
-    clip: rect(0,0,0,0);
+.topText {
+    float: right;
 }
 
-.image{
-    background-color: transparent !important;
-    background:transparent !important;
-    position: absolute; top: 0; left: 0;
-}
-
-#buttonGroup .image{
-    display: none;
-}
-
-.show{
-    display: inline !important;
+#HighestAPMParagraph {
+    display: inline;
 }
