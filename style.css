@@ -5,6 +5,9 @@
 
 .topText {
     float: right;
+    font-size: 2rem;
+    height: 10px;
+    /* font-weight: bold; */
 }
 
 #HighestAPMParagraph {

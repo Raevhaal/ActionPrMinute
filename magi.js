@@ -115,7 +115,7 @@ let config = {
             x: {
                 type: "realtime",
                 realtime: {
-                    duration: 60000,
+                    duration: 30000,
                     refresh: 1000,
                     delay: 1500,
                     onRefresh: onRefresh,
@@ -138,28 +138,30 @@ let config = {
                 backgroundColor: (context) => context.dataset.borderColor,
                 padding: 4,
                 borderRadius: 4,
-                clip: true, // true is recommended to keep labels running off the chart area
+                clip: false, // true is recommended to keep labels running off the chart area
                 color: "white",
                 font: {
                     weight: "bold",
-                    size: 20
+                    size: 35
                 },
-                //formatter: (value) => value.y,
-                formatter: (value, context) => {
+                display: (context) => {
                     if(context.dataIndex === 0){
                         prevValue = 0;
                     }
-
+                    let currentVal = context.dataset.data[context.dataIndex].y;
                     if(context.dataset.data.length - context.dataIndex < 5){
-                        if(prevValue === value.y){
-                            return null;
+                        if(prevValue === currentVal){
+                            return false;
                         }
-                        prevValue = value.y;
-
-                        return value.y;
+                        prevValue = currentVal;
+                        return currentVal;
                     } else {
-                        return null;
+                        return false;
                     }
+                },
+                //formatter: (value) => value.y,
+                formatter: (value, context) => {
+                    return value.y;
                 }
             },
         },
