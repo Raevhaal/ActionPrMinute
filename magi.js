@@ -84,7 +84,7 @@ let data = {
             //borderDash: [8, 4],
             data: [],
             datalabels: {
-                align: "end",
+                align: "start",
                 anchor: "start",
             },
         },
@@ -101,6 +101,8 @@ const onRefresh = (chart) => {
     });
 };
 
+
+prevLabelValue = 0;
 let config = {
     type: "line",
     data: data,
@@ -133,14 +135,24 @@ let config = {
                 backgroundColor: (context) => context.dataset.borderColor,
                 padding: 4,
                 borderRadius: 4,
-                clip: true, // true is recommended to keep labels running off the chart area
+                clip: false, // true is recommended to keep labels running off the chart area
                 color: "white",
                 font: {
                     weight: "bold",
+                    size: 20
                 },
                 //formatter: (value) => value.y,
                 formatter: (value, context) => {
+                    if(context.dataIndex === 0){
+                        prevValue = 0;
+                    }
+
                     if(context.dataset.data.length - context.dataIndex < 5){
+                        if(prevValue === value.y){
+                            return null;
+                        }
+                        prevValue = value.y;
+                        
                         return value.y;
                     } else {
                         return null;
