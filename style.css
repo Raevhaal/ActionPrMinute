@@ -1,0 +1,26 @@
+/* Darkmode scrollbar */
+:root {
+    color-scheme: dark;
+}
+
+/* Hides text */
+.superHidden{
+    font-size: 0px;
+    display: inline; 
+    position: absolute;
+    clip: rect(0,0,0,0);
+}
+
+.image{
+    background-color: transparent !important;
+    background:transparent !important;
+    position: absolute; top: 0; left: 0;
+}
+
+#buttonGroup .image{
+    display: none;
+}
+
+.show{
+    display: inline !important;
+}
